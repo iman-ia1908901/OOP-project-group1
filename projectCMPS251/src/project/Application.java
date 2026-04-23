@@ -1,4 +1,10 @@
-package projectCMPS251;
+package project;
+
+/* 
+ * @author: Iman Alshaiba 
+ * @ version: 
+ * @ since 18-4-2026
+ */
 
 import java.time.LocalDate;
 

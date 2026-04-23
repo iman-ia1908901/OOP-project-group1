@@ -1,15 +1,22 @@
-package projectCMPS251;
+package project;
+/* 
+ * @author: Iman Alshaiba 
+ * @ version: 
+ * @ since 23-4-2026
+ */
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class VisaOfficeSystem {
-	Scanner input = new Scanner(System.in);
+	Scanner in = new Scanner(System.in);
 	public ArrayList<Application>applications = new ArrayList<>();
 	public ArrayList<Officer>officers = new ArrayList<>();;
 	public ArrayList<Applicant>applicant = new ArrayList<>();;
 	public int application_counter = 1000;
 	public int officer_counter = 2000;
+	DataManager dm = new DataLoader();
 	
 	public VisaOfficeSystem() {
 		
@@ -29,6 +36,7 @@ public class VisaOfficeSystem {
 	}
 	public void assignOfficerToApplication(Application app, Officer officer) {
 		
+		
 	}
 	public Application findApplicationByApplicationNo(int appNo) {
 		
@@ -37,10 +45,44 @@ public class VisaOfficeSystem {
 		
 		
 	}
+	public Applicant findApplicantByPassportNo(String passportNo) {
+		
+	}
+	public void viewAllApplicantions() {
+		
+	}
+	
 	public void removeApplication(int appNo) {
 		applications.remove(appNo);
 	}
 	
+	public void processApplication(Application app, Status status) {
+		
+	}
+	public void displayAssignedApplications(int officerID) {
+		
+	}
 	
+	public void displayApplicationTabular(Application a) {
+		
+	}
+	
+	public void displayApplicationsTabular(ArrayList<Application> app) {
+		
+		
+	}
+	public void displayPendingApplications() {
+		
+	}
+	
+	public void calculateWithMostApplications() {
+		
+	}
 
+	public void displayApplicationsBeforeDate( LocalDate date) {
+		
+	}
+	public void save() {
+		
+	}
 }
