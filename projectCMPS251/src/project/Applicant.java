@@ -1,5 +1,7 @@
 package project;
 
+import java.time.LocalDate;
+
 public class Applicant {
 	private String name;
 	private String passportNO;

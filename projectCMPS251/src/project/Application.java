@@ -85,6 +85,7 @@ public class Application {
 		
 	}
 	public double calculateProccessingFee() {
+		return OFFICE_FEE;	
 		
 	}
 	public String toString() {
