@@ -39,6 +39,9 @@ public class VisaOfficeSystem {
 		
 	}
 	public void assignOfficerToApplication(Application app, Officer officer) {
+		for(Application a: applications) {
+			
+		}
 		
 		
 	}
@@ -106,6 +109,7 @@ public class VisaOfficeSystem {
 		
 	}
 	public void displayPendingApplications() {
+		
 		
 	}
 	
