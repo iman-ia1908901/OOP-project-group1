@@ -1,4 +1,7 @@
 package project;
+
+import java.time.LocalDate;
+
 /**
  * @author Kaltham Alemadi
  * @version Version
@@ -44,7 +47,7 @@ public class StudentVisa extends Application {
     }
 
     @Override
-    public double calculateProcessingFees() {
+    public abstract double calculateProcessingFees() {
         return STUDENT_FEE + OFFICE_FEE;
     }
 
