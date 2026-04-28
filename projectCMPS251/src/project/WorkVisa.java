@@ -47,7 +47,6 @@ public class WorkVisa extends Application {
         this.contractYears = contractYears;
     }
 
-    @Override
     public double calculateProcessingFees() {
         return WORK_FEE + OFFICE_FEE;
     }

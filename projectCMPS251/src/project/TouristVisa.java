@@ -35,7 +35,6 @@ public class TouristVisa extends Application {
         this.hotelReservation = hotelReservation;
     }
 
-    @Override
     public double calculateProcessingFees() {
         return TOURIST_FEE + OFFICE_FEE;
     }
