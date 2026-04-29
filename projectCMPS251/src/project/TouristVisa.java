@@ -48,7 +48,9 @@ public class TouristVisa extends Application {
     public String[] getCsvExtras() {
         return new String[]{String.valueOf(durationDays), String.valueOf(hotelReservation)};
     }
-
+    
+    
+    
     @Override
     public String toString() {
         return super.toString() + "\n"

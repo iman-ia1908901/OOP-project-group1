@@ -13,9 +13,8 @@ import java.util.Scanner;
 public class VisaOfficeSystem {
 	Scanner in = new Scanner(System.in);
 	public ArrayList<Application>applications = new ArrayList<>();
-	public ArrayList<Officer>officers = new ArrayList<>();;
-	public ArrayList<Applicant>applicant = new ArrayList<>();;
-	public ArrayList<Applicant>applicants = new ArrayList<>();;
+	public ArrayList<Officer>officers = new ArrayList<>();
+	public ArrayList<Applicant>applicants = new ArrayList<>();
 	public int application_counter = 1000;
 	public int officer_counter = 2000;
 	DataManager dm = new DataLoader();
@@ -30,7 +29,6 @@ public class VisaOfficeSystem {
 		applications.add(app);
 	}
 	public void addApplicant(Applicant app) {
-		applicant.add(app);
 		applicants.add(app);
 	}
 
@@ -41,6 +39,7 @@ public class VisaOfficeSystem {
 
 	}
 	public void assignOfficerToApplication(Application app, Officer officer) {
+		app.setOfficer(officer);
 
 
 	}
@@ -85,6 +84,7 @@ public class VisaOfficeSystem {
 	}
 
 	public void processApplication(Application app, Status status) {
+		app.setStatus(status);
 
 	}
 	public void displayAssignedApplications(int officerID) {
@@ -92,19 +92,28 @@ public class VisaOfficeSystem {
 			if(a.getOfficer().getId()== officerID) {
 				System.out.println(a);
 			}
+			else {
+				System.out.println("invaild officer id");
+			}
+
+				
+			}
 		}
 
-	}
 
 	public void displayApplicationTabular(Application a) {
-		System.out.println("Application No  Applicant Name   passport No.  Nationality  ")
+		System.out.println("Application No  Applicant Name   passport No.  Nationality "
+				+ "Status   Submission Date   Visa Type   Officer");
+		System.out.println(a.getApplicationNO()+"\n"+a.getApplicant().getName()+"\n"+a.getApplicant().getPassportNO()+"\n"
+				+a.getApplicant().getNationality()+"\n"+a.getStatus()+"\n"+a.getSubmissionDate()+
+				"\n"+a.getOfficer().getName());
 
 		
 	}
 
 	public void displayApplicationsTabular(ArrayList<Application> app) {
-		for(Application app : applications) {
-			System.out.println(app);
+		for(Application a : app) {
+			System.out.println(a);
 		}
 
 
@@ -119,6 +128,7 @@ public class VisaOfficeSystem {
 	}
 
 	public void calculateWithMostApplications() {
+		
 
 	}
 
