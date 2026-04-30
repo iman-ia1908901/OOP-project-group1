@@ -1,14 +1,23 @@
 package project;
 
+
 import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * @author Sarah Alhajri && Iman Alshaiba
+ * 
+ * @version Version
+ * @since 2026-04-27/ fixed 2026-4-30
+ * 
+ */
 public class Main {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		VisaOfficeSystem sys = new VisaOfficeSystem();
 	//  TODO Load data from files 
+		
 		try {    
 		int choice = 0; 
 		 
@@ -23,7 +32,7 @@ public class Main {
 		        	 
 		        	 //  TODO Take user selection 
 		        	 System.out.println("Enter menu option: ");
-		        	 sc.nextInt();
+		        	 choice = sc.nextInt();
 		             switch (choice) { 
 		                 case 1: 
 		                     showAdminMenu(sys, sc); 
@@ -34,7 +43,7 @@ public class Main {
 		                     break; 
 		 
 		                 case 3: 
-		                     showApplicantMenu(); 
+		                     showApplicantMenu(sys); 
 		                     break; 
 		 
 		                 case 0: 
@@ -64,11 +73,16 @@ public class Main {
 			System.out.println("0. Back to Main Menu");
 			
 			
+			
 			System.out.println("Enter menu option: ");
 			int option= sc.nextInt();
 			if(option==1) {
 				System.out.println("Enter Officer Name: ");
-				System.out.println("Officer        is successfully added to the system. ");
+				String name = sc.nextLine();
+				int id = sys.application_counter;
+				Officer f = new Officer(id,name);  
+				sys.addVisaOfficer(f);
+				System.out.println("Officer "+ f + "is successfully added to the system. ");
 			}
 			else if(option==2) {
 				System.out.println("--- Available Officers ---");
@@ -130,11 +144,24 @@ public class Main {
 		public static void showOfficerMenu(VisaOfficeSystem sys ) { 
 		  // TODO Handle officer menu 
 			System.out.println("------Officer Login------");
-			System.out.println(sys.);
+			System.out.println(sys.officers);
+			System.out.println("Enter Office ID to login: ");
+			
+			System.out.printf("-- Welcome Officer %s --");
+			System.out.println("1. View Assigned Applications");
+			System.out.println("2. Review Application Details");
+			System.out.println("3. process Application");
+			System.out.println("4. Calculate Processing Fee");
+			System.out.println("0. Back to Main Menu");
+			
+			System.out.println("Enter menu option: ");
+			
+			
 		} // End of showOfficerMenu method 
-		public static void showApplicantMenu() { 
+		public static void showApplicantMenu(VisaOfficeSystem sys) { 
 		  // TODO Handle applicant menu 
 			System.out.println("------Applicant Login------");
+			System.out.println(sys.applicants);
 		} // End of showApplicantMenu method 
 		
 		

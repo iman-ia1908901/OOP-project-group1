@@ -7,8 +7,8 @@ package project;
  */
 
 import java.time.LocalDate;
-
 public abstract class Application {
+	
 	private int applicationNO;
 	private LocalDate submissionDate;
 	private Applicant applicant;
