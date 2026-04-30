@@ -8,54 +8,42 @@ import java.time.LocalDate;
  * @since 2026-04-23
  */
 public class TouristVisa extends Application {
-    public static final double TOURIST_FEE = 350;
-
-    private int durationDays;
+    private int duration;
     private boolean hotelReservation;
 
-    public TouristVisa(int appNo, Applicant applicant, Status status, LocalDate submissionDate,
-                       Officer officer, int durationDays, boolean hotelReservation) {
-        super(appNo, applicant, status, submissionDate, officer);
-        this.durationDays = durationDays;
+    private static final double TOURIST_FEE = 500;
+
+    public TouristVisa(int appNO,Applicant applicant, Status status,LocalDate submissionDate, Officer officer,
+                       int duration, boolean hotelReservation) {
+        super(appNO, applicant, status, submissionDate, officer);
+        this.duration = duration;
         this.hotelReservation = hotelReservation;
     }
-
-    public int getDurationDays() {
-        return durationDays;
+    public int getDuration() {
+        return duration;
     }
 
-    public void setDurationDays(int durationDays) {
-        this.durationDays = durationDays;
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 
     public boolean isHotelReservation() {
         return hotelReservation;
     }
+
     public void setHotelReservation(boolean hotelReservation) {
         this.hotelReservation = hotelReservation;
     }
 
-    public double calculateProcessingFees() {
+    @Override
+    public double calculateProcessingFee() {
         return TOURIST_FEE + OFFICE_FEE;
     }
-
-    @Override
-    public String getVisaType() {
-        return "TouristVisa";
-    }
-
-    @Override
-    public String[] getCsvExtras() {
-        return new String[]{String.valueOf(durationDays), String.valueOf(hotelReservation)};
-    }
-    
-    
-    
     @Override
     public String toString() {
         return super.toString() + "\n"
                 + "Visa Type: TouristVisa\n"
-                + "Duration Days: " + durationDays + "\n"
+                + "Duration Days: " + duration + "\n"
                 + "Hotel Reservation: " + (hotelReservation ? "YES" : "NO");
     }
 }
