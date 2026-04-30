@@ -7,18 +7,20 @@ import java.time.LocalDate;
  * @version Version
  * @since 2026-04-23
  */
-public class StudentVisa extends Application {
-    public static final double STUDENT_FEE = 350;
 
-    private String universityName;
-    private int studyDurationYears;
+public class StudentVisa extends Application {
+   
+	private String universityName;
+    private int studyDuration;
     private boolean scholarship;
 
-    public StudentVisa(int appNo, Applicant applicant, Status status, LocalDate submissionDate,
-                       Officer officer, String universityName, int studyDurationYears, boolean scholarship) {
-        super(appNo, applicant, status, submissionDate, officer);
+    private static final double STUDENT_FEE = 350;
+
+    public StudentVisa(int appNO,Applicant applicant, Status status,LocalDate submissionDate, Officer officer,
+                       String universityName, int studyDuration, boolean scholarship) {
+        super(appNO, applicant, status, submissionDate, officer);
         this.universityName = universityName;
-        this.studyDurationYears = studyDurationYears;
+        this.studyDuration = studyDuration;
         this.scholarship = scholarship;
     }
 
@@ -30,12 +32,11 @@ public class StudentVisa extends Application {
         this.universityName = universityName;
     }
 
-    public int getStudyDurationYears() {
-        return studyDurationYears;
+    public int getStudyDuration() {
+        return studyDuration;
     }
-
-    public void setStudyDurationYears(int studyDurationYears) {
-        this.studyDurationYears = studyDurationYears;
+    public void setStudyDurationYears(int studyDuration) {
+        this.studyDuration = studyDuration;
     }
 
     public boolean isScholarship() {
@@ -47,25 +48,16 @@ public class StudentVisa extends Application {
     }
 
     @Override
-    public abstract double calculateProcessingFees() {
+    public double calculateProcessingFee() {
         return STUDENT_FEE + OFFICE_FEE;
     }
 
-    @Override
-    public String getVisaType() {
-        return "StudentVisa";
-    }
-
-    @Override
-    public String[] getCsvExtras() {
-        return new String[]{universityName, String.valueOf(studyDurationYears), String.valueOf(scholarship)};
-    }
     @Override
     public String toString() {
         return super.toString() + "\n"
                 + "Visa Type: StudentVisa\n"
                 + "University Name: " + universityName + "\n"
-                + "Study Duration: " + studyDurationYears + " years\n"
+                + "Study Duration: " + studyDuration + " years\n"
                 + "Scholarship: " + (scholarship ? "YES" : "NO");
     }
 }
