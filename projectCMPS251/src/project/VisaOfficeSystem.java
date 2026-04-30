@@ -25,7 +25,7 @@ public class VisaOfficeSystem {
 	public void addVisaOfficer(Officer newOfficer) {
 		officers.add(newOfficer);
 	}
-	public void addApplicaion(Application app) {
+	public void addApplication(Application app) {
 		applications.add(app);
 	}
 	public void addApplicant(Applicant app) {
@@ -80,7 +80,12 @@ public class VisaOfficeSystem {
 	}
 
 	public void removeApplication(int appNo) {
-		applications.remove(appNo);
+		for(int i =0; i<applications.size(); i++) {
+			if(applications.get(i).getApplicationNO()== appNo) {
+				applications.remove(i);
+				return;
+			}
+		}
 	}
 
 	public void processApplication(Application app, Status status) {
@@ -92,14 +97,10 @@ public class VisaOfficeSystem {
 			if(a.getOfficer().getId()== officerID) {
 				System.out.println(a);
 			}
-			else {
-				System.out.println("invaild officer id");
-			}
-
-				
-			}
 		}
-
+		System.out.println("Invalid Officer");
+		
+	}
 
 	public void displayApplicationTabular(Application a) {
 		System.out.println("Application No  Applicant Name   passport No.  Nationality "
