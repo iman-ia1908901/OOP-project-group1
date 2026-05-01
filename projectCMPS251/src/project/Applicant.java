@@ -30,9 +30,6 @@ public class Applicant {
 
 	/**
 	* @return
-	* will reseve 
-	* will return
-	* will do
 	*/
 	
 	public String getName() {
