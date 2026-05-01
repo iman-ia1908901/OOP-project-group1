@@ -1,6 +1,6 @@
 package project;
 /* 
- * @author: Iman Alshaiba 
+ * @author: Iman Alshaiba & Kaltham Alemadi
  * @ version: 
  * @ since 23-4-2026
  * edit and add method 24-4-2026
@@ -164,6 +164,11 @@ public class VisaOfficeSystem {
 	        }
 	}
 	public void save() {
-
+		if (dm instanceof DataLoader) {
+		        DataLoader dl = (DataLoader) dm;
+		        dl.saveApplicants(applicants);
+		        dl.saveOfficers(officers);
+		        dl.saveApplications(applications);
+		 }
 	}
 }
