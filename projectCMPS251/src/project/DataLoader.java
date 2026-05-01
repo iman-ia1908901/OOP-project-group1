@@ -9,7 +9,10 @@ import java.util.ArrayList;
 * @ since  
 */
 public class DataLoader implements DataManager {
-	
+	/**
+	 * 
+	 * @param applicants
+	 */
 	public void saveApplicants(ArrayList<Applicant> applicants) {
         try {
             FileWriter writer = new FileWriter("applicants.csv");
@@ -28,6 +31,10 @@ public class DataLoader implements DataManager {
             System.out.println("Error saving applicants.");
         }
     }
+	/**
+	 * 
+	 * @param officers
+	 */
 
     public void saveOfficers(ArrayList<Officer> officers) {
         try {
@@ -44,6 +51,11 @@ public class DataLoader implements DataManager {
             System.out.println("Error saving officers.");
         }
     }
+	/**
+     * 
+     * @param applications
+     */
+
 
     public void saveApplications(ArrayList<Application> applications) {
         try {
@@ -67,6 +79,10 @@ public class DataLoader implements DataManager {
             System.out.println("Error saving applications.");
         }
     }
+	/**
+     * 
+     * @return
+     */
     ArrayList<Applicant> loadApplicants();
 	ArrayList<Application> loadApplications();
 	ArrayList<Officer> loadOfficers();
