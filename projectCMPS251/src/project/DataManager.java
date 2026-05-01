@@ -1,7 +1,11 @@
 package project;
 
 import java.util.ArrayList;
-
+/**
+* @ author: Sarah Alhajri 202403062
+* @ version 
+* @ since : 
+*/
 public interface DataManager {
 	
 	ArrayList<Applicant> loadApplicants();
