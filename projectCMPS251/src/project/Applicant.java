@@ -4,8 +4,8 @@ import java.time.LocalDate;
 
 /**
 *  @ author Shaikha Aldosari 202303941
-* 18/4/2026 / fixed 1/5/2026
-* version version
+*  @ since 18/4/2026 / fixed 1/5/2026
+* @ Version :
 */
 public class Applicant {
 	private String name;
