@@ -7,7 +7,7 @@ public class DataLoader implements DataManager {
 	
 	public void saveApplicants(ArrayList<Applicant> applicants) {
         try {
-            FileWriter writer = new FileWriter("applicants.txt");
+            FileWriter writer = new FileWriter("applicants.csv");
 
             for (Applicant a : applicants) {
                 writer.write(a.getName() + "," +
@@ -26,7 +26,7 @@ public class DataLoader implements DataManager {
 
     public void saveOfficers(ArrayList<Officer> officers) {
         try {
-            FileWriter writer = new FileWriter("officers.txt");
+            FileWriter writer = new FileWriter("officers.csv");
 
             for (Officer o : officers) {
                 writer.write(o.getId() + "," + o.getName() + "\n");
@@ -42,13 +42,19 @@ public class DataLoader implements DataManager {
 
     public void saveApplications(ArrayList<Application> applications) {
         try {
-            FileWriter writer = new FileWriter("applications.txt");
+            FileWriter writer = new FileWriter("applications.csv");
 
             for (Application app : applications) {
-                writer.write(app.getApplicationNO() + "," +
-                        app.getApplicant().getName() + "," +
-                        app.getStatus() + "," +
-                        app.getSubmissionDate() + "\n");
+            	if(app instanceof StudentVisa) {
+            		StudentVisa s = (StudentVisa)app;
+            		add.writer(s.getUniversityName());
+            		s.getUniversityName();
+            		
+            		s.getStudyDuration();
+            		s.isScholarship();
+                 writer.write(app.getApplicationNO() + "," + app.getApplicant().getPassportNO() + "," +
+                 app.getSubmissionDate()+ "," +app.getStatus() +app.getOfficer().getId()+app.ge+"\n");		
+            	}
             }
 
             writer.close();
@@ -58,5 +64,8 @@ public class DataLoader implements DataManager {
             System.out.println("Error saving applications.");
         }
     }
+    ArrayList<Applicant> loadApplicants();
+	ArrayList<Application> loadApplications();
+	ArrayList<Officer> loadOfficers();
 }
 

@@ -34,7 +34,7 @@ public class VisaOfficeSystem {
 
 	public void displayAllOfficers() {
 		for(Officer f : officers) {
-			System.out.println(f.toString());
+			System.out.println(f);
 		}
 
 	}

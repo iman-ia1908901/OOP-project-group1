@@ -39,7 +39,7 @@ public class Main {
 		                     break; 
 		 
 		                 case 2: 
-		                     showOfficerMenu(sys); 
+		                     showOfficerMenu(sys,sc); 
 		                     break; 
 		 
 		                 case 3: 
@@ -148,13 +148,15 @@ public class Main {
 			
 			
 		} // End of showAdminMenu method 
-		public static void showOfficerMenu(VisaOfficeSystem sys ) { 
+		public static void showOfficerMenu(VisaOfficeSystem sys, Scanner sc) { 
 		  // TODO Handle officer menu 
 			System.out.println("------Officer Login------");
-			System.out.println(sys.officers);
+			sys.displayAllOfficers();
 			System.out.println("Enter Office ID to login: ");
+			int id = sc.nextInt();
+			sc.nextLine();
 			
-			System.out.printf("-- Welcome Officer %s --");
+			System.out.println("-- Welcome Officer "+ sys.findOfficerByID(id)+"--");
 			System.out.println("1. View Assigned Applications");
 			System.out.println("2. Review Application Details");
 			System.out.println("3. process Application");
