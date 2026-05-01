@@ -76,13 +76,14 @@ public class Main {
 			
 			System.out.println("Enter menu option: ");
 			int option= sc.nextInt();
+			sc.nextLine();
 			if(option==1) {
 				System.out.println("Enter Officer Name: ");
 				String name = sc.nextLine();
-				int id = sys.application_counter;
+				int id = sys.officer_counter++;
 				Officer f = new Officer(id,name);  
 				sys.addVisaOfficer(f);
-				System.out.println("Officer "+ f + "is successfully added to the system. ");
+				System.out.println("Officer "+ f.getName() + "  is successfully added to the system. ");
 			}
 			else if(option==2) {
 				System.out.println("--- Available Officers ---");
@@ -91,8 +92,14 @@ public class Main {
 			}
 			else if(option==3) {
 				System.out.println("Enter Officer ID: ");
+				int idOf = sc.nextInt();
+				sys.findOfficerByID(idOf);
 				System.out.println("Select one of the visa applications below ");
+				sc.nextLine();
 				System.out.println("Enter Visa Application No: ");
+				int appNo = sc.nextInt();
+				sys.findApplicationByApplicationNo(appNo);
+				sys.assignOfficerToApplication(null, null);
 				System.out.println("Application    has been assigned to officer    Successfully");
 				
 			}

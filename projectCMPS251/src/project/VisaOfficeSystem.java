@@ -15,7 +15,7 @@ public class VisaOfficeSystem {
 	public ArrayList<Application>applications = new ArrayList<>();
 	public ArrayList<Officer>officers = new ArrayList<>();
 	public ArrayList<Applicant>applicants = new ArrayList<>();
-	public int application_counter = 1000;
+	public  int application_counter =1000;
 	public int officer_counter = 2000;
 	DataManager dm = new DataLoader();
 
@@ -103,18 +103,21 @@ public class VisaOfficeSystem {
 	}
 
 	public void displayApplicationTabular(Application a) {
-		System.out.println("Application No  Applicant Name   passport No.  Nationality "
-				+ "Status   Submission Date   Visa Type   Officer");
-		System.out.println(a.getApplicationNO()+"\n"+a.getApplicant().getName()+"\n"+a.getApplicant().getPassportNO()+"\n"
-				+a.getApplicant().getNationality()+"\n"+a.getStatus()+"\n"+a.getSubmissionDate()+
-				"\n"+a.getOfficer().getName());
+		System.out.println("Application No\t Applicant Name\t passport No.\t Nationality\t "
+				+ "Status\t Submission Date\t Visa Type\t Officer");
+		System.out.println(a.getApplicationNO()+"\t"+a.getApplicant().getName()+"\t"+a.getApplicant().getPassportNO()+"\t"
+				+a.getApplicant().getNationality()+"\t"+a.getStatus()+"\t"+a.getSubmissionDate()+
+				"\t"+a.getOfficer().getName());
 
 		
 	}
 
 	public void displayApplicationsTabular(ArrayList<Application> app) {
 		for(Application a : app) {
-			System.out.println(a);
+			System.out.println(a.getApplicationNO()+"\t"+a.getApplicant().getName()+"\t"+a.getApplicant().getPassportNO()+"\t"
+					+a.getApplicant().getNationality()+"\t"+a.getStatus()+"\t"+a.getSubmissionDate()+
+					"\t"+a.getOfficer().getName());
+
 		}
 
 

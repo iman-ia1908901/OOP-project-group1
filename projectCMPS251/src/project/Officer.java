@@ -37,7 +37,7 @@ public class Officer {
 
 	@Override
 	public String toString() {
-		return "Officer Name: " + getName() + "-[ID: " + getId() + "]";
+		return "Officer " + getName() + "- [ ID: " + getId() + " ]";
 
 	}
 
