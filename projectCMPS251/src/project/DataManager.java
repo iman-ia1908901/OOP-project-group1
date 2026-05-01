@@ -7,7 +7,10 @@ import java.util.ArrayList;
 * @ since  
 */
 public interface DataManager {
-	
+	/**
+	 * 
+	 * @return
+	 */
 	ArrayList<Applicant> loadApplicants();
 	ArrayList<Application> loadApplications();
 	ArrayList<Officer> loadOfficers();
