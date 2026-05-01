@@ -9,9 +9,21 @@ import java.time.LocalDate;
 */
 
 public class Applicant {
+	/**
+	*
+	*/
 	private String name;
+	/**
+	*
+	*/
 	private String passportNO;
+	/**
+	*
+	*/
 	private String nationality;
+	/**
+	*
+	*/
 	private LocalDate birthdate;
 	
 	/**
