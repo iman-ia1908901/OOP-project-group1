@@ -155,8 +155,7 @@ public class Main {
 			System.out.println("Enter Office ID to login: ");
 			int id = sc.nextInt();
 			sc.nextLine();
-			
-			System.out.println("-- Welcome Officer "+ sys.findOfficerByID(id)+"--");
+			System.out.println("-- Welcome "+sys.findOfficerByID(id).getName() +"--\n");
 			System.out.println("1. View Assigned Applications");
 			System.out.println("2. Review Application Details");
 			System.out.println("3. process Application");
@@ -164,6 +163,25 @@ public class Main {
 			System.out.println("0. Back to Main Menu");
 			
 			System.out.println("Enter menu option: ");
+			int option= sc.nextInt();
+			sc.nextLine();
+			if(option==1) {
+				System.out.println("Assigned Applications: ");
+				sys.displayAssignedApplications(id);
+			}
+			
+			if(option==2) {
+				System.out.println("Enter application number: ");
+				int num = sc.nextInt();
+				sc.nextLine();
+				System.out.println("Application No: ");
+				System.out.println("Application info:  ");
+				System.out.println("Status: ");
+				System.out.println("SubmissionDate: ");
+				System.out.println("Officer: ");
+				System.out.println("Visa Type: ");
+				System.out.println("Univ: ");
+			}
 			
 			
 		} // End of showOfficerMenu method 
