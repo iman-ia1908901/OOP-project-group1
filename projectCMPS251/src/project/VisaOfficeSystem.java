@@ -173,13 +173,22 @@ public class VisaOfficeSystem {
 	        }
 
 	        if (maxApplicant != null) {
-	            System.out.println("Top Applicant: " + maxApplicant.getName()
-	                    + " (" + maxCount + " applications)");
+	            System.out.println("Top Applicant: " + maxApplicant.getName() + " (" + maxCount + " applications)");
 	        }
 	    }
 
 	
+	public double calculateTotalRevenue() {
 
+	    double total = 0;
+
+	    for (Application app : applications) {
+	        total += app.calculateProcessingFee();
+	    }
+
+	    return total;
+	}
+	
 	public void displayApplicationsBeforeDate( LocalDate date) {
 		 for (Application app : applications) {
 	            if (!app.getSubmissionDate().isAfter(date)) {
