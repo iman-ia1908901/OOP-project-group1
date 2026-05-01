@@ -6,11 +6,9 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
- * @author Sarah Alhajri & Iman Alshaiba & Kaltham Alemadi
- * 
+ * @author Sarah Alhajri (202403062) & Iman Alshaiba (201908901) & Kaltham Alemadi (202502003) & Shaikha Aldosari (202303941)
  * @version Version
  * @since 2026-04-27/ fixed 2026-4-30
- * 
  */
 public class Main {
 	public static void main(String[] args) {
