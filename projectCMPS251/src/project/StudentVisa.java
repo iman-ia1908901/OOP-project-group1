@@ -9,12 +9,31 @@ import java.time.LocalDate;
  */
 
 public class StudentVisa extends Application {
-   
+	/**
+     * 
+     */
 	private String universityName;
+	/**
+     * 
+     */
     private int studyDuration;
+	/**
+     * 
+     */
     private boolean scholarship;
 
     private static final double STUDENT_FEE = 350;
+	/**
+     * 
+     * @param appNO
+     * @param applicant
+     * @param status
+     * @param submissionDate
+     * @param officer
+     * @param universityName
+     * @param studyDuration
+     * @param scholarship
+     */
 
     public StudentVisa(int appNO,Applicant applicant, Status status,LocalDate submissionDate, Officer officer,
                        String universityName, int studyDuration, boolean scholarship) {
@@ -23,6 +42,10 @@ public class StudentVisa extends Application {
         this.studyDuration = studyDuration;
         this.scholarship = scholarship;
     }
+	/**
+     * 
+     * @return
+     */
 
     public String getUniversityName() {
         return universityName;
@@ -31,6 +54,10 @@ public class StudentVisa extends Application {
     public void setUniversityName(String universityName) {
         this.universityName = universityName;
     }
+	/**
+     * 
+     * @return
+     */
 
     public int getStudyDuration() {
         return studyDuration;
@@ -38,6 +65,10 @@ public class StudentVisa extends Application {
     public void setStudyDurationYears(int studyDuration) {
         this.studyDuration = studyDuration;
     }
+	/**
+     * 
+     * @return
+     */
 
     public boolean isScholarship() {
         return scholarship;
@@ -46,11 +77,19 @@ public class StudentVisa extends Application {
     public void setScholarship(boolean scholarship) {
         this.scholarship = scholarship;
     }
+	/**
+     * 
+     * @return
+     */
 
     @Override
     public double calculateProcessingFee() {
         return STUDENT_FEE + OFFICE_FEE;
     }
+	/**
+     * 
+     * @return
+     */
 
     @Override
     public String toString() {
