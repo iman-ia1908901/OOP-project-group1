@@ -47,10 +47,11 @@ public class DataLoader implements DataManager {
             for (Application app : applications) {
             	if(app instanceof StudentVisa) {
             		StudentVisa s = (StudentVisa)app;
+            		int officerId = (s.getOfficer() == null) ? "N/A" : s.getOfficer().getId();
             		writer.write("STUDENT"+","+s.getApplicationNO() + "," + s.getApplicant().getPassportNO() + "," +
-                            s.getSubmissionDate()+ "," +s.getStatus() +","+ s.getOfficer().getId()+","+s.getUniversityName()+ ","+ s.getStudyDuration()+","
+                            s.getSubmissionDate()+ "," +s.getStatus()+","+ officerId+","+s.getUniversityName()+ ","+ s.getStudyDuration()+","
                             +s.isScholarship()+"\n");
-            		
+            		 
             	
             	}
             }
