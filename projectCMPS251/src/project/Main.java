@@ -93,27 +93,55 @@ public class Main {
 			else if(option==3) {
 				System.out.println("Enter Officer ID: ");
 				int idOf = sc.nextInt();
-				sys.findOfficerByID(idOf);
-				System.out.println("Select one of the visa applications below ");
 				sc.nextLine();
-				System.out.println("Enter Visa Application No: ");
+
+				Officer officer = sys.findOfficerByID(idOf);
+
+				System.out.println("Select one of the visa applications below");
+				sys.viewAllApplicantions();
+
+				System.out.print("Enter Visa Application No: ");
 				int appNo = sc.nextInt();
-				sys.findApplicationByApplicationNo(appNo);
-				sys.assignOfficerToApplication(null, null);
-				System.out.println("Application    has been assigned to officer    Successfully");
-				
+				sc.nextLine();
+
+				Application app = sys.findApplicationByApplicationNo(appNo);
+
+				if (officer == null || app == null) {
+				    System.out.println("Invalid officer or application.");
+				} else {
+				    sys.assignOfficerToApplication(app, officer);
+				    System.out.println("Application " + appNo +  " has been assigned to officer " + officer.getName());
+				}
 			}
+			
 			else if(option==4) {
-				sys.viewAllApplicantions();
+				sys.displayApplicationsTabular(sys.applications);
 				
 			}
+			
 			else if(option==5) {
-				System.out.println("Select one of the visa applications below ");
-				sys.viewAllApplicantions();
-				System.out.println("Enter Visa Application No: ");
-				System.out.println("Application    removed Successfully");
-				
-			}
+				 System.out.println("Select one of the visa applications below");
+
+				 	sys.displayApplicationsTabular(sys.applications);
+				 	
+				    System.out.print("Enter Visa Application No: ");
+				    int appNo = sc.nextInt();
+				    sc.nextLine();
+
+				    Application app = sys.findApplicationByApplicationNo(appNo);
+
+				    if (app == null) {
+				        System.out.println("Application not found.");
+				    }
+				    else if (app.getStatus() != Status.PENDING) {
+				        System.out.println("Application " + appNo +  " has already been processed. It cannot be removed.");
+				    }
+				    else {
+				        sys.removeApplication(appNo);
+				        System.out.println("Application " + appNo + " removed successfully");
+				    }
+				}
+			
 			else if(option==6) {
 				System.out.println("-- Reports --");
 				System.out.println(" 1) Display pending applications");
@@ -128,7 +156,7 @@ public class Main {
 					sys.displayPendingApplications();
 				}
 				if(reOption==2) {
-					
+				    System.out.println("Total revenue is QAR " + sys.calculateTotalRevenue());
 				}
 				if(reOption==3) {
 					System.out.println(" Applicant with most applications is   ");
@@ -136,7 +164,10 @@ public class Main {
 					
 				}
 				if(reOption==4) {
-					System.out.println(" Enter date [yyy-mm-dd]: ");
+				    System.out.print("Enter date [yyyy-mm-dd]: ");
+				    LocalDate date = LocalDate.parse(sc.nextLine());
+
+				    sys.displayApplicationsBeforeDate(date);
 				}
 				
 			}
@@ -155,7 +186,8 @@ public class Main {
 			System.out.println("Enter Office ID to login: ");
 			int id = sc.nextInt();
 			sc.nextLine();
-			System.out.println("-- Welcome "+sys.findOfficerByID(id).getName() +"--\n");
+			
+			System.out.println("-- Welcome Officer "+ sys.findOfficerByID(id)+"--");
 			System.out.println("1. View Assigned Applications");
 			System.out.println("2. Review Application Details");
 			System.out.println("3. process Application");
@@ -163,25 +195,6 @@ public class Main {
 			System.out.println("0. Back to Main Menu");
 			
 			System.out.println("Enter menu option: ");
-			int option= sc.nextInt();
-			sc.nextLine();
-			if(option==1) {
-				System.out.println("Assigned Applications: ");
-				sys.displayAssignedApplications(id);
-			}
-			
-			if(option==2) {
-				System.out.println("Enter application number: ");
-				int num = sc.nextInt();
-				sc.nextLine();
-				System.out.println("Application No: ");
-				System.out.println("Application info:  ");
-				System.out.println("Status: ");
-				System.out.println("SubmissionDate: ");
-				System.out.println("Officer: ");
-				System.out.println("Visa Type: ");
-				System.out.println("Univ: ");
-			}
 			
 			
 		} // End of showOfficerMenu method 
@@ -352,8 +365,7 @@ public class Main {
 
 	            else {
 
-	                System.out.println("Status = "
-	                        + app.getStatus());
+	                System.out.println("Status" + app.getStatus());
 
 	            }
 
