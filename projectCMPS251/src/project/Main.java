@@ -6,7 +6,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
- * @author Sarah Alhajri && Iman Alshaiba
+ * @author Sarah Alhajri & Iman Alshaiba & Kaltham Alemadi
  * 
  * @version Version
  * @since 2026-04-27/ fixed 2026-4-30
@@ -43,7 +43,7 @@ public class Main {
 		                     break; 
 		 
 		                 case 3: 
-		                     showApplicantMenu(sys); 
+		                	 showApplicantMenu(sys, sc); 
 		                     break; 
 		 
 		                 case 0: 
@@ -158,11 +158,198 @@ public class Main {
 			
 			
 		} // End of showOfficerMenu method 
-		public static void showApplicantMenu(VisaOfficeSystem sys) { 
+		public static void showApplicantMenu(VisaOfficeSystem sys,  Scanner sc) { 
 		  // TODO Handle applicant menu 
 			System.out.println("------Applicant Login------");
 			System.out.println(sys.applicants);
-		} // End of showApplicantMenu method 
+			System.out.println("1. Existing Applicant");
+	        System.out.println("2. New Applicant");
+
+	        System.out.println("Enter option No.: ");
+			int option= sc.nextInt();
+			
+			Applicant applicant = null;
+			
+			if(option==1) {
+				System.out.print("Enter Passport Number: ");
+	            String passport = sc.nextLine();
+
+	            applicant =
+	                    sys.findApplicantByPassportNo(passport);
+
+	            if (applicant == null) {
+
+	                System.out.println("Applicant not found.");
+	                return; 
+	            }
+			}
+			 else if (option == 2) {
+
+		            System.out.print("Enter Name: ");
+		            String name = sc.nextLine();
+
+		            System.out.print("Enter Passport Number: ");
+		            String passport = sc.nextLine();
+
+		            System.out.print("Enter Nationality: ");
+		            String nationality = sc.nextLine();
+
+		            System.out.print("Enter Birthdate [yyyy-mm-dd]: ");
+
+		            LocalDate birthdate =
+		                    LocalDate.parse(sc.nextLine());
+
+		            applicant = new Applicant(name, passport, nationality, birthdate);
+
+		            sys.addApplicant(applicant);
+
+		            System.out.println("Applicant added successfully.");
+
+		        }
+			
+			 else {
+		            System.out.println("Invalid option");
+		            return;
+		        }
+			
+			System.out.println("1. Create Visa Application");
+		    System.out.println("2. View My Applications");
+		    System.out.println("3. Check Application Status");
+		    System.out.println("4. Withdraw Application");
+	        System.out.println("0. Back");
+
+	        System.out.print("Enter menu option: ");
+	        
+	        int choice = sc.nextInt();
+	        sc.nextLine();
+
+	        if (choice == 1) {
+
+	            System.out.println("1. Tourist Visa");
+	            System.out.println("2. Student Visa");
+	            System.out.println("3. Work Visa");
+
+	            int visaChoice = sc.nextInt();
+	            sc.nextLine();
+
+	            int appNo = ++sys.application_counter;
+
+	            Application app = null;
+	            
+	            if (visaChoice == 1) {
+
+	                System.out.print("Enter duration days: ");
+	                int days = sc.nextInt();
+	                sc.nextLine();
+
+	                System.out.print("Hotel reservation (true/false): ");
+	                boolean hotel =
+	                        Boolean.parseBoolean(sc.nextLine());
+
+	                app = new TouristVisa(appNo, applicant, Status.PENDING, LocalDate.now(), null, days, hotel);
+	            }
+	            else if (visaChoice == 2) {
+
+	                System.out.print("Enter university name: ");
+	                String uni = sc.nextLine();
+
+	                System.out.print("Enter study duration: ");
+	                int years = sc.nextInt();
+	                sc.nextLine();
+
+	                System.out.print("Scholarship (true/false): ");
+	                boolean scholarship =
+	                        Boolean.parseBoolean(sc.nextLine());
+
+	                app = new StudentVisa(appNo, applicant, Status.PENDING, LocalDate.now(), null, uni, years, scholarship);
+
+	            }
+	            else if (visaChoice == 3) {
+
+	                System.out.print("Enter company name: ");
+	                String company = sc.nextLine();
+
+	                System.out.print("Enter salary: ");
+	                double salary = sc.nextDouble();
+	                sc.nextLine();
+
+	                System.out.print("Enter contract duration: ");
+	                int duration = sc.nextInt();
+	                sc.nextLine();
+
+	                app = new WorkVisa(appNo, applicant, Status.PENDING, LocalDate.now(), null, company, salary, duration);
+
+	            }
+	            if (app != null) {
+
+	                sys.addApplication(app);
+
+	                System.out.println("Application submitted successfully.");
+
+	            }
+	        }
+	        else if (choice == 2) {
+
+	        	boolean found = false;
+
+	        	for (Application app : sys.applications) {
+
+	        	    if (app.getApplicant().getPassportNO().equalsIgnoreCase(applicant.getPassportNO())) {
+
+	        	        System.out.println(app);
+	        	        System.out.println("----------------------");
+	        	        found = true;
+	        	    }
+	        	}
+
+	        	if (!found) {
+	        	    System.out.println("No applications found.");
+	        	}
+
+	        }
+	        else if (choice == 3) {
+
+	            System.out.print("Enter Application Number: ");
+
+	            int appNo = sc.nextInt();
+	            sc.nextLine();
+
+	            Application app =
+	                    sys.findApplicationByApplicationNo(appNo);
+
+	            if (app == null) {
+
+	                System.out.println("Application not found.");
+
+	            }
+
+	            else {
+
+	                System.out.println("Status = "
+	                        + app.getStatus());
+
+	            }
+
+	        }
+	        else if (choice == 4) {
+
+	            System.out.print("Enter Application Number: ");
+
+	            int appNo = sc.nextInt();
+	            sc.nextLine();
+
+	            sys.removeApplication(appNo);
+
+	        }
+
+	    }
+ 
+
+		
+		
+		
+		
+		// End of showApplicantMenu method 
 		
 		
 		 
@@ -189,5 +376,3 @@ public class Main {
 	    }
 
 	
-
-
