@@ -151,7 +151,18 @@ public class VisaOfficeSystem {
 		}
 
 	}
+	
+	public double calculateTotalRevenue() {
 
+	    double total = 0;
+
+	    for (Application app : applications) {
+	        total += app.calculateProcessingFee();
+	    }
+
+	    return total;
+	}
+	
 	public void calculateWithMostApplications() {
 		 Applicant maxApplicant = null;
 	        int maxCount = 0;
@@ -177,17 +188,6 @@ public class VisaOfficeSystem {
 	    }
 
 	
-	public double calculateTotalRevenue() {
-
-	    double total = 0;
-
-	    for (Application app : applications) {
-	        total += app.calculateProcessingFee();
-	    }
-
-	    return total;
-	}
-	
 	public void displayApplicationsBeforeDate( LocalDate date) {
 		 for (Application app : applications) {
 	            if (!app.getSubmissionDate().isAfter(date)) {
@@ -196,6 +196,7 @@ public class VisaOfficeSystem {
 	            }
 	        }
 	}
+	
 	public void save() {
 		if (dm instanceof DataLoader) {
 		        DataLoader dl = (DataLoader) dm;
