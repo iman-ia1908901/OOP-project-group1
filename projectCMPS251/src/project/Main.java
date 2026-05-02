@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 /**
  * @author  Sarah Alhajri (202403062) & Iman Alshaiba (201908901) & Kaltham Alemadi (202502003) & Shaikha Aldosari (202303941) 
- * @version Version
+ * @version Version: 1.0 
  * @since 2026-04-27/ fixed 2026-4-30
  * 
  */

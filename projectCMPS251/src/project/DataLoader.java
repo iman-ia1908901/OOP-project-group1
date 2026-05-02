@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 /**
 * @ author: Sarah Alhajri 202403062 && Iman Alshaiba 201908901
-* @ version 
+* @ version 1.0
 * @ since  2026/4/27, fixed 2026/5/1 and 2026/5/2
 */
 public class  DataLoader implements DataManager {

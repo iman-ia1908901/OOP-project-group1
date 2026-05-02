@@ -5,7 +5,7 @@ import java.time.LocalDate;
 /**
 *  @ author: Shaikha Aldosari 202303941
 *  @ since 18/4/2026 / fixed 1/5/2026
-* @ version :
+* @ version :0.1
 */
 
 public class Applicant {
