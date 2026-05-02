@@ -17,8 +17,9 @@ public class VisaOfficeSystem {
 	public ArrayList<Applicant>applicants = new ArrayList<>();
 	public  int application_counter =1000;
 	public int officer_counter = 2000;
-	DataManager dm = new DataLoader();
-
+	public DataManager dm = new DataLoader();
+	
+	
 	//public VisaOfficeSystem() { }
 	
 	public void addVisaOfficer(Officer newOfficer) {
@@ -103,23 +104,25 @@ public class VisaOfficeSystem {
 	
 	public void displayApplicationTabular(Application a) {
 		
+		if( a== null || a.getApplicant() == null) {
+			System.out.println("Invaild applicant");
+			return ;
+		}
 		String officerName = (a.getOfficer() == null) ? "N/A" : a.getOfficer().getName();
 	    String visaType = a.getClass().getSimpleName();
 
-
-	    System.out.println(
+	        System.out.println("\t"+
 	        a.getApplicationNO() + "\t" +
 	        a.getApplicant().getName() + "\t" +
 	        a.getApplicant().getPassportNO() + "\t" +
-	        a.getApplicant().getNationality() + "\t" +
-	        a.getStatus() + "\t" +
+	        a.getApplicant().getNationality() + "\t"+
+	        a.getStatus() + "\t"+
 	        a.getSubmissionDate() + "\t" +
 	        visaType + "\t" +
 	        officerName );
 	}
 	
 	public void displayApplicationTabular(ArrayList<Application> app) {
-
 	    System.out.println("Application No\tApplicant Name\tPassport No.\tNationality\tStatus\tSubmission Date\tVisa Type\tOfficer");
 
 	    for (Application a : app) {

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 * @ version 
 * @ since  2026/4/27, fixed 2026/5/1 and 2026/5/2
 */
-public class DataLoader implements DataManager {
+public class  DataLoader implements DataManager {
 	/**
 	 * 
 	 * @param applicants
@@ -26,9 +26,10 @@ public class DataLoader implements DataManager {
                         a.getNationality() + "," +
                         a.getBirthdate() + "\n");
             }
+            writer.close();
             System.out.println("Applicants saved successfully.");
            
-            writer.close();
+           
 
         } catch (IOException e) {
             System.out.println("Error saving applicants.");
@@ -49,10 +50,10 @@ public class DataLoader implements DataManager {
                 writer.write(o.getId() + "," + o.getName() + "\n");
             }
 
-           /* writer.close();*/
+            writer.close();
             System.out.println("Officers saved successfully.");
             
-            writer.close();
+          
 
         } catch (IOException e) {
             System.out.println("Error saving officers.");
@@ -89,8 +90,9 @@ public class DataLoader implements DataManager {
             	}
             	          	
             }
-            System.out.println("Applications saved successfully.");
             writer.close();
+            System.out.println("Applications saved successfully.");
+            
         } catch (IOException e) {
             System.out.println("Error saving applications.");
         }
@@ -113,8 +115,9 @@ public class DataLoader implements DataManager {
     			 }
     			 
     		 }
-    		 System.out.println("Applicants load successfully.");
     		 reader.close();
+    		 System.out.println("Applicants load successfully.");
+    		 
     		 
     	}catch (IOException e) {
             System.out.println("Error loading applicants.");
@@ -128,6 +131,7 @@ public class DataLoader implements DataManager {
 		 ArrayList<Officer> officers = loadOfficers();
     	try {
     		 BufferedReader reader = new BufferedReader(new FileReader("applications.csv"));
+    		 reader.readLine();
     		 String line;
     		 while((line = reader.readLine())!= null) {
     			 String[] data = line.split(",");
@@ -142,7 +146,7 @@ public class DataLoader implements DataManager {
 				 
 				 Applicant applicant = null;
 				 for(Applicant ap : applicants) {
-					 if(ap.getPassportNO().equals(pasNo)) {
+					 if(ap.getPassportNO().equalsIgnoreCase(pasNo)) {
 						 applicant= ap;
 						 break;		 
 					 }
@@ -159,7 +163,7 @@ public class DataLoader implements DataManager {
 			
     		 }
 			
-    			 if(TypeVisa.equals("STUDENT")) {
+				    if(TypeVisa.equals("STUDENT")) {
     				 String UniversityName = data[6];
     				 String StudyDurStr = data[7];
     				 int StudyDur = Integer.parseInt(StudyDurStr);
@@ -169,7 +173,7 @@ public class DataLoader implements DataManager {
     				 
     			 }
     			 
-    			 if(TypeVisa.equals("TOURIST")) {
+				 else if(TypeVisa.equals("TOURIST")) {
     				 String duraDaysStr = data[6];
     				 int duraDays = Integer.parseInt(duraDaysStr);
     				 String hotelReStr = data[7];
@@ -177,7 +181,7 @@ public class DataLoader implements DataManager {
     				 
     				 applications.add(new TouristVisa(appNo,applicant,status,LocalDate.parse(SubDate),officer,duraDays, hotelRes));
     			 }
-    			 if(TypeVisa.equals("WORK")) {
+				 else if(TypeVisa.equals("WORK")) {
    
     				 String companyName = data[6];
     				 String salaryStr= data[7];
@@ -202,6 +206,7 @@ public class DataLoader implements DataManager {
 		ArrayList<Officer>officers= new ArrayList<>();
     	try {
     		 BufferedReader reader = new BufferedReader(new FileReader("officers.csv"));
+    		 reader.readLine();
     		 String line;
     		 while((line = reader.readLine())!= null) {
     			 String[] data = line.split(",");
@@ -212,8 +217,9 @@ public class DataLoader implements DataManager {
     				 officers.add(new Officer(id, name));
     			 }
     		 }
-    		 System.out.println("Officers load successfully.");
     		 reader.close();
+    		 System.out.println("Officers load successfully.");
+    		
     		 
     	}catch (IOException e) {
             System.out.println("Error loading officers.");

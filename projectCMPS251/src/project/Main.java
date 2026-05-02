@@ -15,7 +15,11 @@ public class Main {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		VisaOfficeSystem sys = new VisaOfficeSystem();
+		
 	//  TODO Load data from files 
+		sys.applicants = sys.dm.loadApplicants();
+		sys.applications = sys.dm.loadApplications();
+		sys.officers = sys.dm.loadOfficers();
 		
 		try {    
 		int choice = 0; 
