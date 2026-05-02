@@ -7,7 +7,7 @@ import java.time.LocalDate;
  * It includes duration of stay and hotel reservation status.
  * 
  * @author Kaltham Alemadi
- * @version Version
+ * @version 1.0
  * @since 2026-04-23
  */
 public class TouristVisa extends Application {
