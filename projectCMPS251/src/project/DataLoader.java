@@ -1,6 +1,9 @@
 package project;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -64,13 +67,24 @@ public class DataLoader implements DataManager {
             for (Application app : applications) {
             	if(app instanceof StudentVisa) {
             		StudentVisa s = (StudentVisa)app;
-            		int officerId = (s.getOfficer() == null) ? "N/A" : s.getOfficer().getId();
+            		String officerId = (s.getOfficer() == null) ? "N/A" : String.valueOf(s.getOfficer().getId());
             		writer.write("STUDENT"+","+s.getApplicationNO() + "," + s.getApplicant().getPassportNO() + "," +
                             s.getSubmissionDate()+ "," +s.getStatus()+","+ officerId+","+s.getUniversityName()+ ","+ s.getStudyDuration()+","
                             +s.isScholarship()+"\n");
-            		 
-            	
+            	} 
+            	if(app instanceof TouristVisa) {
+                	TouristVisa t = (TouristVisa)app;
+                	writer.write("TOURIST"+","+t.getApplicationNO() + "," + t.getApplicant().getPassportNO() + "," +
+                         t.getSubmissionDate()+ "," +t.getStatus()+","+t.getOfficer().getId()+"," +t.getDurationDays() +","+t.isHotelReservation()+","+"\n");
             	}
+            	if(app instanceof WorkVisa) {
+                	WorkVisa w = (WorkVisa)app;
+                	writer.write("WORK"+","+w.getApplicationNO() + "," + w.getApplicant().getPassportNO() + "," +
+                         w.getSubmissionDate()+ "," +w.getStatus()+","+w.getOfficer().getId()+"," +w.getCompanyName()+","+w.getSalary()+","+
+                			+w.getContractYears()+"\n");
+            	}
+            	
+            	
             }
 
             writer.close();
@@ -81,11 +95,125 @@ public class DataLoader implements DataManager {
         }
     }
 	/**
-     * 
-     * @return
      */
-    ArrayList<Applicant> loadApplicants();
-	ArrayList<Application> loadApplications();
-	ArrayList<Officer> loadOfficers();
+    public ArrayList<Applicant> loadApplicants(){
+    	ArrayList<Applicant>applicants= new ArrayList<>();
+    	try {
+    		 BufferedReader reader = new BufferedReader(new FileReader("applicants.csv"));
+    		 String line;
+    		 while((line = reader.readLine())!= null) {
+    			 String[] data = line.split(",");
+    			 if(data.length == 4) {
+    				 String name = data[0];
+    				 String passportNo = data[1];
+    				 String nationality = data[2];
+    				 String birthdate = data[3];
+    				 applicants.add(new Applicant(name,passportNo,nationality,LocalDate.parse(birthdate)));
+    			 }
+    			 reader.close();
+    			 System.out.println("Applicants load successfully.");
+    		 }
+    		 
+    	}catch (IOException e) {
+            System.out.println("Error loading applicants.");
+    	}
+    	return applicants;
+    		
+    }
+	public ArrayList<Application> loadApplications(){
+		ArrayList<Application>applications= new ArrayList<>();
+    	try {
+    		 BufferedReader reader = new BufferedReader(new FileReader("applications.csv"));
+    		 String line;
+    		 while((line = reader.readLine())!= null) {
+    			 String[] data = line.split(",");
+    			 if(data.length == 9) {
+    				 String TypeVisa = data[0];
+    				 String appNoStr = data[1];
+    				 int appNo = Integer.parseInt(appNoStr);
+    				 String  pasNo = data[2];
+    				 String SubDate = data[3];
+    				 String Status = data[4];
+    				 String OfidStr = data[5];
+    				 int Ofid = Integer.parseInt(OfidStr);
+    				 String UniversityName = data[6];
+    				 String StudyDurStr = data[7];
+    				 int StudyDur = Integer.parseInt(StudyDurStr);
+    				 String isScholarStr = data[8];
+    				 boolean isScholar = Boolean.parseBoolean(isScholarStr);
+    				 
+    				 applications.add(new Application(TypeVisa,appNo,pasNo,LocalDate.parse(SubDate),Status,Ofid,UniversityName, StudyDur, isScholar));
+    			 }
+    			 if(data.length == 8) {
+    				 String TypeVisa = data[0];
+    				 String appNoStr = data[1];
+    				 int appNo = Integer.parseInt(appNoStr);
+    				 String  pasNo = data[2];
+    				 String SubDate = data[3];
+    				 String Status = data[4];
+    				 String OfidStr = data[5];
+    				 int Ofid = Integer.parseInt(OfidStr);
+    				 String duraDaysStr = data[6];
+    				 int duraDays = Integer.parseInt(duraDaysStr);
+    				 String hotelReStr = data[7];
+    				 boolean hotelRes= Boolean.parseBoolean(hotelReStr);
+    				 
+    				 applications.add(new Application(TypeVisa,appNo,pasNo,LocalDate.parse(SubDate),Status,Ofid,duraDays, hotelRes));
+    			 }
+    			 if(data.length == 9) {
+    				 String TypeVisa = data[0];
+    				 String appNoStr = data[1];
+    				 int appNo = Integer.parseInt(appNoStr);
+    				 String  pasNo = data[2];
+    				 String SubDate = data[3];
+    				 String Status = data[4];
+    				 String OfidStr = data[5];
+    				 int Ofid = Integer.parseInt(OfidStr);
+    				 String companyName = data[6];
+    				 String salaryStr= data[7];
+    				 double salary = Double.parseDouble(salaryStr);
+    				 String contYearStr= data[8];
+    				 int contYear= Integer.parseInt(contYearStr);
+    				 
+    				 applications.add(new Application(TypeVisa,appNo,pasNo,LocalDate.parse(SubDate),Status,Ofid,companyName,salary,contYear));
+    			 }
+    			 reader.close();
+    			 System.out.println("Applications load successfully.");
+    		 }
+    		 
+    	}catch (IOException e) {
+            System.out.println("Error loading applications.");
+    	}
+    	return applications;
+    		
+		
+		
+		
+		
+	}
+	public ArrayList<Officer> loadOfficers(){
+		ArrayList<Officer>officers= new ArrayList<>();
+    	try {
+    		 BufferedReader reader = new BufferedReader(new FileReader("officers.csv"));
+    		 String line;
+    		 while((line = reader.readLine())!= null) {
+    			 String[] data = line.split(",");
+    			 if(data.length == 2) {
+    				 String name = data[0];
+    				 String idStr = data[1];
+    				 int id = Integer.parseInt(idStr);
+    				 officers.add(new Officer(id, name));
+    			 }
+    			 reader.close();
+    			 System.out.println("Officers load successfully.");
+    		 }
+    		 
+    	}catch (IOException e) {
+            System.out.println("Error loading officers.");
+    	}
+    	return officers;
+    		
+		
+	}
 }
 

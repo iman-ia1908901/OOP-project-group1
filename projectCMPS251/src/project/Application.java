@@ -132,7 +132,7 @@ public abstract class Application {
 	/**
 	*
 	*/
-	public abstract double calculateProccessingFee() {
+	public  double calculateProcessingFee() {
 		return OFFICE_FEE;	
 
 	}
@@ -147,7 +147,7 @@ public abstract class Application {
 				+ applicant + ", status=" + status + ", officer=" + officer + ", OFFICE_FEE=" + OFFICE_FEE
 				+ ", getApplicationNO()=" + getApplicationNO() + ", getSubmissionDate()=" + getSubmissionDate()
 				+ ", getApplicant()=" + getApplicant() + ", getStatus()=" + getStatus() + ", getOfficer()="
-				+ getOfficer() + ", calculateProccessingFee()=" + calculateProccessingFee() + ", getClass()="
+				+ getOfficer() + ", calculateProccessingFee()=" + calculateProcessingFee() + ", getClass()="
 				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
 	

@@ -37,7 +37,7 @@ public class TouristVisa extends Application {
 
     @Override
     public double calculateProcessingFee() {
-        return TOURIST_FEE + OFFICE_FEE;
+    	 return TOURIST_FEE + OFFICE_FEE;
     }
     @Override
     public String toString() {
