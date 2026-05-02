@@ -282,8 +282,7 @@ public class Main {
 		
 		public static void showApplicantMenu(VisaOfficeSystem sys,  Scanner sc) { 
 		  // TODO Handle applicant menu 
-			System.out.println("------Applicant Login------");
-			System.out.println(sys.applicants);
+			System.out.println("------ Applicant Login ------");
 			System.out.println("1. Existing Applicant");
 	        System.out.println("2. New Applicant");
 
@@ -293,6 +292,7 @@ public class Main {
 			Applicant applicant = null;
 			
 			if(option==1) {
+				
 				for(Applicant a : sys.applicants) {
 				    System.out.println(a.getName() + " [" + a.getPassportNO() + "]");
 				}
@@ -333,31 +333,34 @@ public class Main {
 				    applicant1 = new Applicant(name, passport, nationality, dob);
 				    sys.addApplicant(applicant1);
 				}
-
+				
+				applicant = applicant1;
+				
 				System.out.println("-- Welcome Applicant " + applicant1.getName() + " --");
 			}
 			
 			 else if (option == 2) {
+				 
+				 sc.nextLine(); 
+		         System.out.print("Enter Name: ");
+		         String name = sc.nextLine();
 
-		            System.out.print("Enter Name: ");
-		            String name = sc.nextLine();
+		         System.out.print("Enter Passport Number: ");
+		         String passport = sc.nextLine();
 
-		            System.out.print("Enter Passport Number: ");
-		            String passport = sc.nextLine();
+		         System.out.print("Enter Nationality: ");
+		         String nationality = sc.nextLine();
 
-		            System.out.print("Enter Nationality: ");
-		            String nationality = sc.nextLine();
+		         System.out.print("Enter Birthdate [yyyy-mm-dd]: ");
 
-		            System.out.print("Enter Birthdate [yyyy-mm-dd]: ");
+		         LocalDate birthdate =
+                    LocalDate.parse(sc.nextLine());
 
-		            LocalDate birthdate =
-		                    LocalDate.parse(sc.nextLine());
+		         applicant = new Applicant(name, passport, nationality, birthdate);
 
-		            applicant = new Applicant(name, passport, nationality, birthdate);
+		         sys.addApplicant(applicant);
 
-		            sys.addApplicant(applicant);
-
-		            System.out.println("Applicant added successfully.");
+		         System.out.println("Applicant added successfully.");
 
 		        }
 			
@@ -365,20 +368,22 @@ public class Main {
 		            System.out.println("Invalid option");
 		            return;
 		        }
-			
-			System.out.println("1. Create Visa Application");
+			int choice;
+			do {
+			System.out.println("1. Create New Visa Application");
 		    System.out.println("2. View My Applications");
 		    System.out.println("3. Check Application Status");
 		    System.out.println("4. Withdraw Application");
 	        System.out.println("0. Back");
 
 	        System.out.print("Enter menu option: ");
-	        
-	        int choice = sc.nextInt();
+	        choice = sc.nextInt();
 	        sc.nextLine();
 
 	        if (choice == 1) {
 
+	        	System.out.println("Create New Visa Application");
+	        	System.out.println("Select Visa type:");
 	            System.out.println("1. Tourist Visa");
 	            System.out.println("2. Student Visa");
 	            System.out.println("3. Work Visa");
@@ -438,8 +443,8 @@ public class Main {
 
 	                sys.addApplication(app);
 
-	                System.out.println("Application submitted successfully.");
-
+	                System.out.println("New application added. Details below:");
+	                System.out.println(app);
 	            }
 	        }
 	        else if (choice == 2) {
@@ -485,26 +490,38 @@ public class Main {
 	        }
 	        else if (choice == 4) {
 
-	            System.out.print("Enter Application Number to withdraw: ");
-
+	        	System.out.print("Enter application number to withdraw: ");
 	            int appNo = sc.nextInt();
-	            sc.nextLine();
+	       	    sc.nextLine();
 
-	            sys.removeApplication(appNo);
-	            
-	            System.out.print("Application removed successfully");
-	        }
+	            Application app = sys.findApplicationByApplicationNo(appNo);
+
+	       	    if (app == null) {
+	       	        System.out.println("Application not found.");
+	       	    }
+	       	    else if (app.getStatus() != Status.PENDING) {
+	       	        System.out.println("Application " + appNo + " has already been processed. It cannot be removed/withdrawn");
+	        	    }
+	        	else {
+	                sys.removeApplication(appNo);
+	       	        System.out.println("Application " + appNo + " removed successfully");
+	       	    }
+	       }
+	        
 	        else if(choice == 0) {
-		        return;
+		        break;
 		    }
 
 		    else {
 		        System.out.println("Invalid option");
+		        return;
 		    }
+			
 
-	    }// End of showApplicantMenu method 
+			} while(choice != 0); 
 		
 	
-    }
+		} // End of showApplicantMenu method
+	}
 
 	
