@@ -100,49 +100,34 @@ public class VisaOfficeSystem {
 		System.out.println("Invalid Officer");
 		
 	}
-	/*
-	public void displayApplicationTabular(Application a) {
-		System.out.println("Application No\t Applicant Name\t passport No.\t Nationality\t "
-				+ "Status\t Submission Date\t Visa Type\t Officer");
-		System.out.println(a.getApplicationNO()+"\t"+a.getApplicant().getName()+"\t"+a.getApplicant().getPassportNO()+"\t"
-				+a.getApplicant().getNationality()+"\t"+a.getStatus()+"\t"+a.getSubmissionDate()+
-				"\t"+a.getOfficer().getName());
-
-		
-	}
-
 	
-	  public void displayApplicationsTabular(ArrayList<Application> app) {
-		for(Application a : app) {
-			System.out.println(a.getApplicationNO()+"\t"+a.getApplicant().getName()+"\t"+a.getApplicant().getPassportNO()+"\t"
-					+a.getApplicant().getNationality()+"\t"+a.getStatus()+"\t"+a.getSubmissionDate()+
-					"\t"+a.getOfficer().getName());
-
-		}
+	public void displayApplicationTabular(Application a) {
+		
+		String officerName = (a.getOfficer() == null) ? "N/A" : a.getOfficer().getName();
+	    String visaType = a.getClass().getSimpleName();
 
 
+	    System.out.println(
+	        a.getApplicationNO() + "\t" +
+	        a.getApplicant().getName() + "\t" +
+	        a.getApplicant().getPassportNO() + "\t" +
+	        a.getApplicant().getNationality() + "\t" +
+	        a.getStatus() + "\t" +
+	        a.getSubmissionDate() + "\t" +
+	        visaType + "\t" +
+	        officerName );
 	}
-	*/
-	public void displayApplicationsTabular(ArrayList<Application> app) {
+	
+	public void displayApplicationTabular(ArrayList<Application> app) {
 
 	    System.out.println("Application No\tApplicant Name\tPassport No.\tNationality\tStatus\tSubmission Date\tVisa Type\tOfficer");
 
 	    for (Application a : app) {
 
-	        String officerName = (a.getOfficer() == null) ? "N/A" : a.getOfficer().getName();
-	        String visaType = a.getClass().getSimpleName();
-
-	        System.out.println(
-	                a.getApplicationNO() + "\t" +
-	                a.getApplicant().getName() + "\t" +
-	                a.getApplicant().getPassportNO() + "\t" +
-	                a.getApplicant().getNationality() + "\t" +
-	                a.getStatus() + "\t" +
-	                a.getSubmissionDate() + "\t" +
-	                visaType + "\t" +
-	                officerName );
+	    	 displayApplicationTabular(a);
 	    }
 	}
+	
 	public void displayPendingApplications() {
 		for(Application a: applications) {
 			if(a.getStatus()==Status.PENDING) {
