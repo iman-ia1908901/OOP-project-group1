@@ -117,14 +117,14 @@ public class Main {
 			}
 			
 			else if(option==4) {
-				sys.displayApplicationsTabular(sys.applications);
+				sys.displayApplicationTabular(sys.applications);
 				
 			}
 			
 			else if(option==5) {
 				 System.out.println("Select one of the visa applications below");
 
-				 	sys.displayApplicationsTabular(sys.applications);
+				 	sys.displayApplicationTabular(sys.applications);
 				 	
 				    System.out.print("Enter Visa Application No: ");
 				    int appNo = sc.nextInt();
@@ -203,7 +203,7 @@ public class Main {
 
 			if(option == 1) {
 				System.out.println("Assigned Applications:");
-			    sys.displayApplicationsTabular(sys.applications); 
+			    sys.displayApplicationTabular(sys.applications); 
 		    }
 
 		    else if(option == 2) {
