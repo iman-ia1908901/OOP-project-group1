@@ -1,6 +1,6 @@
 package project;
 
-/* 
+/**
  * @author: Iman Alshaiba 
  * @ version: 
  * @ since 18-4-2026
@@ -8,14 +8,40 @@ package project;
 
 import java.time.LocalDate;
 public abstract class Application {
-	
+	/**
+	*
+	*/
 	private int applicationNO;
+	/**
+	*
+	*/
 	private LocalDate submissionDate;
+	/**
+	*
+	*/
 	private Applicant applicant;
+	/**
+	*
+	*/
 	private Status status;
+	/**
+	*
+	*/
 	private Officer officer;
+	/**
+	*
+	*/
 	public double OFFICE_FEE = 250;
 
+	/**
+	 * 
+	 * @param appNO
+	 * @param applicant
+	 * @param status
+	 * @param submissionDate
+	 * @param officer
+	 */
+	
 	public Application(int appNO,Applicant applicant, Status status,LocalDate submissionDate, Officer officer) {
 		super();
 		this.applicationNO = appNO;
@@ -24,7 +50,10 @@ public abstract class Application {
 		this.status = status;
 		this.officer = officer;
 	}
-
+	/**
+	 * 
+	 * @return
+	 */
 
 	public int getApplicationNO() {
 		return applicationNO;
@@ -34,7 +63,10 @@ public abstract class Application {
 	public void setApplicationNO(int applicationNO) {
 		this.applicationNO = applicationNO;
 	}
-
+	/**
+	 * 
+	 * @return
+	 */
 
 	public LocalDate getSubmissionDate() {
 		return submissionDate;
@@ -44,7 +76,10 @@ public abstract class Application {
 	public void setSubmissionDate(LocalDate submissionDate) {
 		this.submissionDate = submissionDate;
 	}
-
+	/**
+	 * 
+	 * @return
+	 */
 
 	public Applicant getApplicant() {
 		return applicant;
@@ -54,8 +89,11 @@ public abstract class Application {
 	public void setApplicant(Applicant applicant) {
 		this.applicant = applicant;
 	}
-
-
+	/**
+	 * 
+	 * @return
+	 */
+	
 	public Status getStatus() {
 		return status;
 	}
@@ -64,7 +102,10 @@ public abstract class Application {
 	public void setStatus(Status status) {
 		this.status = status;
 	}
-
+	/**
+	 * 
+	 * @return
+	 */
 
 	public Officer getOfficer() {
 		return officer;
@@ -74,20 +115,31 @@ public abstract class Application {
 	public void setOfficer(Officer officer) {
 		this.officer = officer;
 	}
-
+	/**
+	*
+	*/
 
 	public void approveApplication() {
 
 	}
+	/**
+	*
+	*/
 
 	public void rejectApplication() {
 
 	}
+	/**
+	*
+	*/
 	public abstract double calculateProccessingFee() {
 		return OFFICE_FEE;	
 
 	}
-
+	/**
+	 * 
+	 * @return
+	 */
 
 	@Override
 	public String toString() {
