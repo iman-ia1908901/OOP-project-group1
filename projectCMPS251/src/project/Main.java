@@ -60,8 +60,10 @@ public class Main {
 		     } 
 		 
 		} // End of main method 
+	
 		public static void showAdminMenu(VisaOfficeSystem sys, Scanner sc) { 
 		  // TODO Handle admin menu 
+			
 			System.out.println("--------------------------------------");
 			System.out.println("1. Add Visa Officer");
 			System.out.println("2. Display All Officers");
@@ -76,6 +78,7 @@ public class Main {
 			System.out.println("Enter menu option: ");
 			int option= sc.nextInt();
 			sc.nextLine();
+			
 			if(option==1) {
 				System.out.println("Enter Officer Name: ");
 				String name = sc.nextLine();
@@ -179,6 +182,7 @@ public class Main {
 		
 		public static void showOfficerMenu(VisaOfficeSystem sys, Scanner sc) { 
 		  // TODO Handle officer menu 
+			
 			System.out.println("------Officer Login------");
 			sys.displayAllOfficers();
 			System.out.println("Enter Office ID to login: ");
@@ -282,6 +286,7 @@ public class Main {
 		
 		public static void showApplicantMenu(VisaOfficeSystem sys,  Scanner sc) { 
 		  // TODO Handle applicant menu 
+			
 			System.out.println("------ Applicant Login ------");
 			System.out.println("1. Existing Applicant");
 	        System.out.println("2. New Applicant");
