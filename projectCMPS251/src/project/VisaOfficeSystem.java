@@ -19,9 +19,8 @@ public class VisaOfficeSystem {
 	public int officer_counter = 2000;
 	DataManager dm = new DataLoader();
 
-	public VisaOfficeSystem() {
-
-	}
+	//public VisaOfficeSystem() { }
+	
 	public void addVisaOfficer(Officer newOfficer) {
 		officers.add(newOfficer);
 	}
