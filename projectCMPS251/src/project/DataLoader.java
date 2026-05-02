@@ -110,9 +110,9 @@ public class DataLoader implements DataManager {
     				 String birthdate = data[3];
     				 applicants.add(new Applicant(name,passportNo,nationality,LocalDate.parse(birthdate)));
     			 }
-    			 reader.close();
     			 System.out.println("Applicants load successfully.");
     		 }
+    		 reader.close();
     		 
     	}catch (IOException e) {
             System.out.println("Error loading applicants.");
@@ -133,7 +133,7 @@ public class DataLoader implements DataManager {
     				 int appNo = Integer.parseInt(appNoStr);
     				 String  pasNo = data[2];
     				 String SubDate = data[3];
-    				 String Status = data[4];
+    				 Status status = Status.valueOf(data[4]);
     				 String OfidStr = data[5];
     				 int Ofid = Integer.parseInt(OfidStr);
     				 String UniversityName = data[6];
@@ -142,7 +142,7 @@ public class DataLoader implements DataManager {
     				 String isScholarStr = data[8];
     				 boolean isScholar = Boolean.parseBoolean(isScholarStr);
     				 
-    				 applications.add(new Application(TypeVisa,appNo,pasNo,LocalDate.parse(SubDate),Status,Ofid,UniversityName, StudyDur, isScholar));
+    				 applications.add(new StudentVisa(TypeVisa,appNo,pasNo,LocalDate.parse(SubDate),status,Ofid,UniversityName, StudyDur, isScholar));
     			 }
     			 if(data.length == 8) {
     				 String TypeVisa = data[0];
@@ -158,7 +158,7 @@ public class DataLoader implements DataManager {
     				 String hotelReStr = data[7];
     				 boolean hotelRes= Boolean.parseBoolean(hotelReStr);
     				 
-    				 applications.add(new Application(TypeVisa,appNo,pasNo,LocalDate.parse(SubDate),Status,Ofid,duraDays, hotelRes));
+    				 applications.add(new TouristVisa(TypeVisa,appNo,pasNo,LocalDate.parse(SubDate),Status,Ofid,duraDays, hotelRes));
     			 }
     			 if(data.length == 9) {
     				 String TypeVisa = data[0];
@@ -175,11 +175,11 @@ public class DataLoader implements DataManager {
     				 String contYearStr= data[8];
     				 int contYear= Integer.parseInt(contYearStr);
     				 
-    				 applications.add(new Application(TypeVisa,appNo,pasNo,LocalDate.parse(SubDate),Status,Ofid,companyName,salary,contYear));
+    				 applications.add(new WorkVisa(TypeVisa,appNo,pasNo,LocalDate.parse(SubDate),Status,Ofid,companyName,salary,contYear));
     			 }
-    			 reader.close();
     			 System.out.println("Applications load successfully.");
     		 }
+    		 reader.close();
     		 
     	}catch (IOException e) {
             System.out.println("Error loading applications.");
@@ -199,14 +199,14 @@ public class DataLoader implements DataManager {
     		 while((line = reader.readLine())!= null) {
     			 String[] data = line.split(",");
     			 if(data.length == 2) {
-    				 String name = data[0];
-    				 String idStr = data[1];
+    				 String idStr = data[0];
+    				 String name = data[1];
     				 int id = Integer.parseInt(idStr);
     				 officers.add(new Officer(id, name));
     			 }
-    			 reader.close();
     			 System.out.println("Officers load successfully.");
     		 }
+    		 reader.close();
     		 
     	}catch (IOException e) {
             System.out.println("Error loading officers.");
