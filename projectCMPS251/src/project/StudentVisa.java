@@ -8,7 +8,7 @@ import java.time.LocalDate;
  * study duration, and scholarship status.
  * 
  * @author Kaltham Alemadi
- * @version Version
+ * @version 1.0
  * @since 2026-04-23
  */
 public class StudentVisa extends Application {
