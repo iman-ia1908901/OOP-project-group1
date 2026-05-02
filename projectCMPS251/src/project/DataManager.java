@@ -2,9 +2,9 @@ package project;
 
 import java.util.ArrayList;
 /**
-* @ author: Sarah Alhajri 202403062
+* @ author: Sarah Alhajri 202403062 && Iman Alshaiba 201908901
 * @ version 
-* @ since  
+* @ since  2026/4/27 fixed 2026/5/1
 */
 public interface DataManager {
 	/**

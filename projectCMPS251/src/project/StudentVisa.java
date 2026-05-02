@@ -35,9 +35,9 @@ public class StudentVisa extends Application {
      * @param scholarship
      */
 
-    public StudentVisa(int appNO,Applicant applicant, Status status,LocalDate submissionDate, Officer officer,
+    public StudentVisa(int appNO,Applicant applicant,Status status,LocalDate submissionDate, Officer officer,
                        String universityName, int studyDuration, boolean scholarship) {
-        super(appNO, applicant, status, submissionDate, officer);
+        super(appNO, applicant,status, submissionDate, officer);
         this.universityName = universityName;
         this.studyDuration = studyDuration;
         this.scholarship = scholarship;

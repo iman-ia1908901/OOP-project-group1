@@ -410,7 +410,7 @@ public class Main {
 	                boolean hotel =
 	                        Boolean.parseBoolean(sc.nextLine());
 
-	                app = new TouristVisa(appNo, applicant, Status.PENDING, LocalDate.now(), null, days, hotel);
+	                app = new TouristVisa(appNo, applicant,Status.PENDING, LocalDate.now(), null, days, hotel);
 	            }
 	            else if (visaChoice == 2) {
 
@@ -425,7 +425,7 @@ public class Main {
 	                boolean scholarship =
 	                        Boolean.parseBoolean(sc.nextLine());
 
-	                app = new StudentVisa(appNo, applicant, Status.PENDING, LocalDate.now(), null, uni, years, scholarship);
+	                app = new StudentVisa(appNo, applicant,Status.PENDING, LocalDate.now(), null, uni, years, scholarship);
 
 	            }
 	            else if (visaChoice == 3) {
@@ -441,7 +441,7 @@ public class Main {
 	                int duration = sc.nextInt();
 	                sc.nextLine();
 
-	                app = new WorkVisa(appNo, applicant, Status.PENDING, LocalDate.now(), null, company, salary, duration);
+	                app = new WorkVisa(appNo, applicant,Status.PENDING, LocalDate.now(), null, company, salary, duration);
 
 	            }
 	            if (app != null) {

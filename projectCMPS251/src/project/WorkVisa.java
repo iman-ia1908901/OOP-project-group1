@@ -14,9 +14,9 @@ public class WorkVisa extends Application {
 
     private static final double WORK_FEE = 650;
 
-    public WorkVisa(int appNO,Applicant applicant, Status status,LocalDate submissionDate, Officer officer,
+    public WorkVisa(int appNO,Applicant applicant,Status status,LocalDate submissionDate, Officer officer,
                     String companyName, double salary, int contractYears) {
-        super(appNO, applicant, status, submissionDate, officer);
+        super(appNO, applicant,status,submissionDate, officer);
         this.companyName = companyName;
         this.salary = salary;
         this.contractYears = contractYears;

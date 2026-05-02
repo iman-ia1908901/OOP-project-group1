@@ -42,7 +42,7 @@ public abstract class Application {
 	 * @param officer
 	 */
 	
-	public Application(int appNO,Applicant applicant, Status status,LocalDate submissionDate, Officer officer) {
+	public Application(int appNO,Applicant applicant,Status status,LocalDate submissionDate, Officer officer) {
 		super();
 		this.applicationNO = appNO;
 		this.submissionDate = submissionDate;

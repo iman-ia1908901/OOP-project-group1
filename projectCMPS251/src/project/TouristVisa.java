@@ -13,9 +13,9 @@ public class TouristVisa extends Application {
 
     private static final double TOURIST_FEE = 500;
 
-    public TouristVisa(int appNO,Applicant applicant, Status status,LocalDate submissionDate, Officer officer,
+    public TouristVisa(int appNO,Applicant applicant,Status status,LocalDate submissionDate, Officer officer,
                        int durationDays, boolean hotelReservation) {
-        super(appNO, applicant, status, submissionDate, officer);
+        super(appNO, applicant,status,submissionDate, officer);
         this.durationDays = durationDays;
         this.hotelReservation = hotelReservation;
     }
