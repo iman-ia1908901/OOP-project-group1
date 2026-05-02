@@ -6,9 +6,10 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
- * @author Sarah Alhajri (202403062) & Iman Alshaiba (201908901) & Kaltham Alemadi (202502003) & Shaikha Aldosari (202303941)
+ * @author  Sarah Alhajri (202403062) & Iman Alshaiba (201908901) & Kaltham Alemadi (202502003) & Shaikha Aldosari (202303941) 
  * @version Version
  * @since 2026-04-27/ fixed 2026-4-30
+ * 
  */
 public class Main {
 	public static void main(String[] args) {
@@ -174,9 +175,8 @@ public class Main {
 				
 			}	
 			
-			
-			
 		} // End of showAdminMenu method 
+		
 		public static void showOfficerMenu(VisaOfficeSystem sys, Scanner sc) { 
 		  // TODO Handle officer menu 
 			System.out.println("------Officer Login------");
@@ -192,10 +192,94 @@ public class Main {
 			System.out.println("4. Calculate Processing Fee");
 			System.out.println("0. Back to Main Menu");
 			
+			int option;
 			System.out.println("Enter menu option: ");
+			option = sc.nextInt();
+			sc.nextLine();
+
+			if(option == 1) {
+				System.out.println("Assigned Applications:");
+			    sys.displayApplicationsTabular(sys.applications); 
+		    }
+
+		    else if(option == 2) {
+		        System.out.print("Enter Application No: ");
+		        int appNo = sc.nextInt();
+			    sc.nextLine();
+
+		        Application app = sys.findApplicationByApplicationNo(appNo);
+
+		        if(app != null) {
+		            System.out.println(app);
+		            } 
+		        else {
+			        System.out.println("Application not found.");
+			        }
+			    }
 			
+		    else if(option == 3) {
+		    	 System.out.print("Enter application number to process: ");
+		    	    int appNo = sc.nextInt();
+		    	    sc.nextLine();
+
+		    	    Application app = sys.findApplicationByApplicationNo(appNo);
+
+		    	    if(app == null) {
+		    	        System.out.println("Application not found.");
+		    	        return;
+		    	    }
+
+		    	    System.out.println("Status of application [" + appNo + "] is currently " + app.getStatus());
+
+		    	    if(app.getStatus() != Status.PENDING) {
+		    	        System.out.println("Application is already processed.");
+		    	        return;
+		    	    }
+
+		    	    System.out.println("Select new Status:");
+		    	    System.out.println("[1] Approved");
+		    	    System.out.println("[2] Rejected");
+
+		    	    int choice = sc.nextInt();
+		    	    sc.nextLine();
+
+		    	    if(choice == 1) {
+		    	        sys.processApplication(app, Status.APPROVED);
+		    	    }
+		    	    else if(choice == 2) {
+		    	        sys.processApplication(app, Status.REJECTED);
+		    	    }
+		    	    else {
+		    	        System.out.println("Invalid option.");
+		    	    }
+		    }
+			
+		    else if(option == 4) {
+		        System.out.print("Enter Application No: ");
+		        int appNo = sc.nextInt();
+		        sc.nextLine();
+
+		        Application app = sys.findApplicationByApplicationNo(appNo);
+
+		        if(app == null) {
+		            System.out.println("Application not found.");
+		        }
+		        else {
+		            System.out.println(app);
+		            System.out.println("Application [" + appNo + "] fees: QAR "
+		                    + app.calculateProcessingFee());
+		        }
+		    }
+		    else if(option == 0) {
+		        return;
+		    }
+
+		    else {
+		        System.out.println("Invalid option");
+		    }
 			
 		} // End of showOfficerMenu method 
+		
 		public static void showApplicantMenu(VisaOfficeSystem sys,  Scanner sc) { 
 		  // TODO Handle applicant menu 
 			System.out.println("------Applicant Login------");
@@ -209,18 +293,50 @@ public class Main {
 			Applicant applicant = null;
 			
 			if(option==1) {
-				System.out.print("Enter Passport Number: ");
-	            String passport = sc.nextLine();
+				for(Applicant a : sys.applicants) {
+				    System.out.println(a.getName() + " [" + a.getPassportNO() + "]");
+				}
 
-	            applicant =
-	                    sys.findApplicantByPassportNo(passport);
+				System.out.print("Enter applicant passport number to login or 0 to create new credentials: ");
+				String input = sc.next();
 
-	            if (applicant == null) {
+				Applicant applicant1 = null;
 
-	                System.out.println("Applicant not found.");
-	                return; 
-	            }
+				
+				if(!input.equals("0")) {
+
+				    applicant1 = sys.findApplicantByPassportNo(input);
+
+				    if(applicant1 == null) {
+				        System.out.println("Applicant not found.");
+				        return;
+				    }
+				}
+
+		
+				else {
+
+				    sc.nextLine(); 
+
+				    System.out.print("Enter Name: ");
+				    String name = sc.nextLine();
+
+				    System.out.print("Enter Passport number: ");
+				    String passport = sc.nextLine();
+
+				    System.out.print("Enter nationality: ");
+				    String nationality = sc.nextLine();
+
+				    System.out.print("Enter Date of birth in this format [yyyy-mm-dd]: ");
+				    LocalDate dob = LocalDate.parse(sc.nextLine());
+
+				    applicant1 = new Applicant(name, passport, nationality, dob);
+				    sys.addApplicant(applicant1);
+				}
+
+				System.out.println("-- Welcome Applicant " + applicant1.getName() + " --");
 			}
+			
 			 else if (option == 2) {
 
 		            System.out.print("Enter Name: ");
@@ -352,8 +468,7 @@ public class Main {
 	            int appNo = sc.nextInt();
 	            sc.nextLine();
 
-	            Application app =
-	                    sys.findApplicationByApplicationNo(appNo);
+	            Application app = sys.findApplicationByApplicationNo(appNo);
 
 	            if (app == null) {
 
@@ -363,53 +478,33 @@ public class Main {
 
 	            else {
 
-	                System.out.println("Status" + app.getStatus());
+	                System.out.println("Status of application:" + app.getStatus());
 
 	            }
 
 	        }
 	        else if (choice == 4) {
 
-	            System.out.print("Enter Application Number: ");
+	            System.out.print("Enter Application Number to withdraw: ");
 
 	            int appNo = sc.nextInt();
 	            sc.nextLine();
 
 	            sys.removeApplication(appNo);
-
+	            
+	            System.out.print("Application removed successfully");
 	        }
+	        else if(choice == 0) {
+		        return;
+		    }
 
-	    }
- 
+		    else {
+		        System.out.println("Invalid option");
+		    }
 
+	    }// End of showApplicantMenu method 
 		
-		
-		
-		
-		// End of showApplicantMenu method 
-		
-		
-		 
-	       /* Applicant applicant1 = new Applicant("Sara", "P111", "Qatar", LocalDate.of(2004, 5, 10));
-	        Officer officer1 = new Officer(2001, "Ali");
-
-	        system.addApplicant(applicant1);
-	        system.addVisaOfficer(officer1);
-
-	        System.out.println("=== Visa Office System Test ===");
-	        System.out.println("Applicant added:");
-	        System.out.println(applicant1);
-
-	        System.out.println();
-
-	        System.out.println("Officer added:");
-	        System.out.println(officer1);
-
-	        System.out.println();
-
-	        system.save();
-
-	        System.out.println("Testing completed successfully.");*/
-	    }
+	
+    }
 
 	
