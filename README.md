@@ -1,2 +1,2 @@
-# OOP-project-group1
+# project-group1
 
